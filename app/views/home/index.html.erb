@@ -1,0 +1,54 @@
+<section>
+  <h1>Music Database</h1>
+  <hr>
+  <h2>Add a Song</h2>
+  <p class="status none alert alert-info">Status: Sending Request</p>
+  <div class="errors alert alert-danger none"></div>
+  <%= form_for(@music) do |f| %>
+    <div class="field form-group">
+      <%= f.label :title %><br>
+      <%= f.text_field :title, class:'form-control' %>
+    </div>
+    <div class="field form-group">
+      <%= f.label :artist %><br>
+      <%= f.text_field :artist, class:'form-control' %>
+    </div>
+    <div class="field form-group">
+      <%= f.label :year %><br>
+      <%= f.text_field :year, class:'form-control' %>
+    </div>
+    <div class="field form-group">
+      <%= f.label :genre %><br>
+      <%= f.text_field :genre, class:'form-control' %>
+    </div>
+    <div class="actions">
+      <%= f.submit :class => "btn btn-primary"%>
+    </div>
+  <% end %>
+  
+  <h2>List of Songs</h2>
+  <table id="music_list" class="none table">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Artist</th>
+        <th>Year</th>
+        <th>Genre</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+  
+    <tbody>
+      <% @musics.each do |music| %>
+        <tr>
+          <td><%= music.title %></td>
+          <td><%= music.artist %></td>
+          <td><%= music.year %></td>
+          <td><%= music.genre %></td>
+          <td><%= link_to 'x', music, method: :delete, class: 'music_delete' %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <p class="no_music alert alert-warning">No music yet... please, add some!</p>
+</section>
